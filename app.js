@@ -1,21 +1,23 @@
 function changeBG() {
-    const mainImg = document.getElementById('bg-img');
-    const btn = document.querySelector('.btn');
+    const img = document.getElementById('bg-img');
+    const btn = document.getElementById('bg-btn');
 
     btn.disabled = true;
-
-    const tempImg = new Image();
+    btn.innerText = "Yüklənir...";
     
+    img.style.opacity = "0.4";
+
     const newSrc = "https://picsum.photos/1920/1080?random=" + Math.random();
+    const tempImg = new Image();
     tempImg.src = newSrc;
 
     tempImg.onload = function() {
-        mainImg.style.opacity = "0.7";
+        img.src = newSrc;
         
-    
-        mainImg.src = newSrc;
-        
-        mainImg.style.opacity = "1";
-        btn.disabled = false;
+        img.onload = () => {
+            img.style.opacity = "1";
+            btn.disabled = false;
+            btn.innerText = "Şəkli Dəyiş";
+        };
     };
 }
